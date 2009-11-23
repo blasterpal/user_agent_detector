@@ -1,0 +1,17 @@
+== Example Rails usage ==
+
+require 'user_agent_detector/detector'
+include UserAgentDetector
+
+def detect_user_agent
+  detector = Detector.new
+  if detector.is_iphone_ipod? request.env["HTTP_USER_AGENT"]
+       @mobile = 'iphone'
+  elsif detector.is_android? request.env["HTTP_USER_AGENT"]
+         @mobile = 'android'
+  elsif detector.is_major_mobile? request.env["HTTP_USER_AGENT"]
+       @mobile = 'major_mobile'
+  else
+    @mobile = 'none'     
+  end
+end
